@@ -16,15 +16,20 @@ class ViewController: UIViewController {
         let frame = CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: 74)
         
         let cmView = CMView(frame: frame, labelTitle: "Avalible (BTC)", labelColor: UIColor.black, labelSize: 14, lineColor: UIColor.gray, lineHeight: 1, buttonDoWhat: {
-            
             print("点击按钮")
-            
         }) {
             print("编辑键盘")
-            
         }
-        
         self.view.addSubview(cmView)
+        
+        
+        
+        let frameSec = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 74)
+        let cmViewSec = CMView(frame: frameSec, labelTitle: "Avalible (BTC)", labelColor: UIColor.blue, labelSize: 14, lineColor: UIColor.gray, lineHeight: 4, buttonDoWhat: {
+            print("点击按钮")
+        }, textFieldEnable: false)
+        self.view.addSubview(cmViewSec)
+
     }
 
     override func didReceiveMemoryWarning() {
