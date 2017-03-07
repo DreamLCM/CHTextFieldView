@@ -63,7 +63,7 @@ class CMView: UIView {
     }
     
     
-    convenience init(frame: CGRect, labelTitle: String, labelColor: UIColor, labelSize: CGFloat,lineColor: UIColor,lineHeight: CGFloat,buttonDoWhat: @escaping ButtonDoWhat,textFieldEnable: Bool) {
+    convenience init(textFieldEnable: Bool,frame: CGRect, labelTitle: String, labelColor: UIColor, labelSize: CGFloat,lineColor: UIColor,lineHeight: CGFloat,buttonDoWhat: @escaping ButtonDoWhat) {
         self.init(frame: frame)
         
         let label = CMLabel(frame: CGRect(x: 12, y: 8, width: 200, height: 20), title: labelTitle, color: labelColor, sizeTitle: labelSize)

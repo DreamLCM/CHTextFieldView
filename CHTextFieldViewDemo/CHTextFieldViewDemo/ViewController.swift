@@ -25,9 +25,9 @@ class ViewController: UIViewController {
         
         
         let frameSec = CGRect(x: 0, y: 200, width: self.view.frame.size.width, height: 74)
-        let cmViewSec = CMView(frame: frameSec, labelTitle: "Avalible (BTC)", labelColor: UIColor.blue, labelSize: 14, lineColor: UIColor.gray, lineHeight: 4, buttonDoWhat: {
+        let cmViewSec = CMView(textFieldEnable: false, frame: frameSec, labelTitle: "Avalible (BTC)", labelColor: UIColor.blue, labelSize: 14, lineColor: UIColor.gray, lineHeight: 4, buttonDoWhat: {
             print("点击按钮")
-        }, textFieldEnable: false)
+        })
         self.view.addSubview(cmViewSec)
 
     }
