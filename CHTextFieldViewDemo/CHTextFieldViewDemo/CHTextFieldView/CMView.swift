@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+@IBDesignable
 class CMView: UIView {
 
     typealias ButtonDoWhat = () -> Void
@@ -40,58 +42,59 @@ class CMView: UIView {
 
     
     
+    
     // label的属性
-    var labelColor = UIColor.blue {
+    @IBInspectable public var labelColor = UIColor.blue {
         didSet {
             self.label?.textColor = self.labelColor
         }
     }
     
-    var labelText = "Available" {
+    @IBInspectable public var labelText = "Available" {
         didSet {
             self.label?.text = self.labelText
         }
     }
     
-    var labelSize:CGFloat = 14 {
+    @IBInspectable public var labelSize:CGFloat = 14 {
         didSet {
             self.label?.font = UIFont.systemFont(ofSize: labelSize)
         }
     }
     
-    var labelConstantLeft:CGFloat = 8 {
+    @IBInspectable public var labelConstantLeft:CGFloat = 8 {
         didSet {
             self.setConstantForLabel(left: labelConstantLeft, bottom: labelConstantBottom)
         }
     }
     
-    var labelConstantBottom:CGFloat = -8 {
+    @IBInspectable public var labelConstantBottom:CGFloat = -8 {
         didSet {
             self.setConstantForLabel(left: labelConstantLeft, bottom: labelConstantBottom)
         }
     }
     
     // textField 的属性
-    var textFieldTitle = "520.1414" {
+    @IBInspectable public var textFieldTitle = "520.1414" {
         didSet {
             self.tf?.text = textFieldTitle
         }
     }
 
-    var textFieldSize: CGFloat = 16 {
+    @IBInspectable public var textFieldSize: CGFloat = 16 {
         didSet {
             self.tf?.font = UIFont.systemFont(ofSize: textFieldSize)
         }
     }
     
-    var textFieldColor = UIColor.red {
+    @IBInspectable public var textFieldColor = UIColor.red {
         didSet {
             self.tf?.textColor = textFieldColor
         }
     }
     
     // 距左
-    var tfConstantLeft: CGFloat = 8 {
+    @IBInspectable public var tfConstantLeft: CGFloat = 8 {
         didSet {
             self.setConstantForTF(left: self.tfConstantLeft,
                                   centerY: tfConstantCenterY,
@@ -102,7 +105,7 @@ class CMView: UIView {
     }
     
     // 距中
-    var tfConstantCenterY: CGFloat = 0 {
+    @IBInspectable public var tfConstantCenterY: CGFloat = 0 {
         didSet {
             self.setConstantForTF(left: self.tfConstantLeft,
                                   centerY: tfConstantCenterY,
@@ -112,7 +115,7 @@ class CMView: UIView {
     }
     
     // 宽度
-    var tfConstantWidth: CGFloat = 200 {
+    @IBInspectable public var tfConstantWidth: CGFloat = 200 {
         didSet {
             self.setConstantForTF(left: self.tfConstantLeft,
                                   centerY: tfConstantCenterY,
@@ -122,7 +125,7 @@ class CMView: UIView {
     }
     
     // 高度
-    var tfConstantHeight: CGFloat = 25 {
+    @IBInspectable public var tfConstantHeight: CGFloat = 25 {
         didSet {
             self.setConstantForTF(left: self.tfConstantLeft,
                                   centerY: tfConstantCenterY,
@@ -132,20 +135,20 @@ class CMView: UIView {
     }
     
     // 等于 false时键盘点击无效
-    var textFieldIsEnable = true {
+    @IBInspectable public var textFieldIsEnable = true {
         didSet {
             self.tf?.isEnabled = textFieldIsEnable
         }
     }
     
     //viewLine 的属性
-    var lineColor = UIColor.gray {
+    @IBInspectable public var lineColor = UIColor.gray {
         didSet {
             self.viewLine?.backgroundColor = lineColor
         }
     }
     
-    var lineConstantLeft:CGFloat = 8 {
+    @IBInspectable public  var lineConstantLeft:CGFloat = 8 {
         didSet {
             self.setConstantForLine(left: lineConstantLeft,
                                     top: lineConstantTop,
@@ -154,7 +157,7 @@ class CMView: UIView {
         }
     }
     
-    var lineConstantRight: CGFloat = -8 {
+    @IBInspectable public var lineConstantRight: CGFloat = -8 {
         didSet {
             self.setConstantForLine(left: lineConstantLeft,
                                     top: lineConstantTop,
@@ -163,7 +166,7 @@ class CMView: UIView {
         }
     }
     
-    var lineConstantHeight: CGFloat = 1 {
+    @IBInspectable public var lineConstantHeight: CGFloat = 1 {
         didSet {
             self.setConstantForLine(left: lineConstantLeft,
                                     top: lineConstantTop,
@@ -172,7 +175,7 @@ class CMView: UIView {
         }
     }
     
-    var lineConstantTop: CGFloat = 8 {
+    @IBInspectable public var lineConstantTop: CGFloat = 8 {
         didSet {
             self.setConstantForLine(left: lineConstantLeft,
                                     top: lineConstantTop,
@@ -182,26 +185,26 @@ class CMView: UIView {
     }
     
     //button 的属性
-    var backgroundImage = UIImage() {
+    @IBInspectable public var backgroundImage = UIImage() {
         didSet {
             self.button?.setImage(backgroundImage, for: .normal)
         }
     }
     
-    var buttonTitle = "" {
+    @IBInspectable public var buttonTitle = "" {
         didSet {
             self.button?.setTitle(buttonTitle, for: .normal)
         }
     }
     
-    var buttonConstantCenterY: CGFloat = 0 {
+   @IBInspectable public var buttonConstantCenterY: CGFloat = 0 {
         didSet {
             self.setConstantForButton(centerY: buttonConstantCenterY,
                                       right: buttonConstantRight)
         }
     }
     
-    var buttonConstantRight: CGFloat = 8 {
+    @IBInspectable public var buttonConstantRight: CGFloat = 8 {
         didSet {
             self.setConstantForButton(centerY: buttonConstantCenterY,
                                       right: buttonConstantRight)
