@@ -13,9 +13,6 @@ class CMButton: UIButton {
     typealias DoWhat = () -> Void
     var doWhat: DoWhat?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
     
     convenience init(title: String, block: @escaping DoWhat) {
         let size = title.textSizeWithFont(UIFont.boldSystemFont(ofSize: 17), constrainedToSize: CGSize(width: 2000,height: 2000))
@@ -85,18 +82,13 @@ class CMButton: UIButton {
         
         doWhat = block
     }
+    
 
     
     //点击按钮事件
     func buttonPress() {
         self.doWhat?()
     }
-
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     
     
     

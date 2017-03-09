@@ -18,14 +18,7 @@ class CMLineView: UIView {
     }
     */
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+   
     
     convenience init(frame: CGRect, backgroundColor: UIColor) {
         self.init(frame: frame)
