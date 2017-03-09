@@ -106,6 +106,12 @@ class CMView: UIView {
         }
     }
     
+    var buttonSize = CGSize(width: 26, height: 26) {
+        didSet {
+            self.button?.frame.size = buttonSize
+        }
+    }
+    
     
     
     var label: CMLabel?
@@ -147,7 +153,7 @@ class CMView: UIView {
             
         })
         self.button?.doWhat = buttonDoWhat
-        self.button?.frame = CGRect(x: self.frame.width - 13 - 22, y: 8+label!.frame.height, width: 26, height: 26)
+        self.button?.frame = CGRect(x: self.frame.width - 13 - 22, y: 8+label!.frame.height, width: buttonSize.width, height: buttonSize.height)
         self.addSubview(self.button!)
 
         let tap = UITapGestureRecognizer(target: self, action:  #selector(self.gesAction(sender:)))
