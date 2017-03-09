@@ -67,17 +67,13 @@ class CMButton: UIButton {
         let height: CGFloat = image.size.height > size.height ? image.size.height:size.height;
         
         self.init(frame: CGRect(x: 0.0, y: 0.0, width: size.width + image.size.width + 10, height: height))
-        self.setTitle(title, for: UIControlState())
+        self.setTitle(title, for: .normal)
         self.titleLabel!.font = UIFont.boldSystemFont(ofSize: 17)
         self.titleLabel!.minimumScaleFactor = 0.5
         self.titleLabel!.adjustsFontSizeToFitWidth = true
-        self.titleLabel!.textColor = UIColor.white
-        self.setTitleColor(UIColor.white, for: UIControlState())
-        self.setTitleColor(UIColor.white, for: UIControlState.highlighted)
-        self.setTitleColor(UIColor.white, for: UIControlState.selected)
-        self.setImage(image, for: UIControlState())
-        self.setImage(image, for: UIControlState.highlighted)
-        self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10)
+        self.titleLabel!.textColor = UIColor.black
+        self.setTitleColor(UIColor.black, for: .normal)
+        self.setBackgroundImage(image, for: .normal)
         self.addTarget(self, action: #selector(CMButton.buttonPress), for: UIControlEvents.touchUpInside)
         
         doWhat = block

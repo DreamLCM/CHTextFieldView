@@ -19,7 +19,6 @@ class ViewController: UIViewController {
         let frame = CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: 74)
         let cmView = CMView(frame: frame)
         cmView.backgroundImage = #imageLiteral(resourceName: "logo_black_sm")
-        cmView.buttonSize = CGSize(width: 26, height: 26)
         cmView.buttonDoWhat = {
             print("点击按钮")
         }
@@ -33,11 +32,12 @@ class ViewController: UIViewController {
         self.viewXib.textFieldSize = 22
         self.viewXib.lineColor = UIColor.blue
         self.viewXib.textFieldIsEnable = false
-        self.viewXib.buttonSize = CGSize(width: 26, height: 26)
         
         // 按钮背景
-        self.viewXib.backgroundImage = #imageLiteral(resourceName: "logo_black_sm")
+//        self.viewXib.backgroundImage = #imageLiteral(resourceName: "logo_black_sm")
+        self.viewXib.buttonTitle = "button"
         
+        self.viewXib.tfConstantHeight = self.viewXib.frame.height/5
         
         // 按钮执行方法
         self.viewXib.buttonDoWhat = {
@@ -56,9 +56,7 @@ class ViewController: UIViewController {
         self.viewXib.tapDoWhat = {
             print("触摸")
         }
-        
-
-        
+    
     }
 
     override func didReceiveMemoryWarning() {

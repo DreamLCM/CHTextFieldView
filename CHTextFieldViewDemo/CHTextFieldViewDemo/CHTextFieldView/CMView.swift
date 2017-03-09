@@ -59,6 +59,18 @@ class CMView: UIView {
         }
     }
     
+    var labelConstantLeft:CGFloat = 8 {
+        didSet {
+            self.setConstantForLabel(left: labelConstantLeft, bottom: labelConstantBottom)
+        }
+    }
+    
+    var labelConstantBottom:CGFloat = -8 {
+        didSet {
+            self.setConstantForLabel(left: labelConstantLeft, bottom: labelConstantBottom)
+        }
+    }
+    
     // textField 的属性
     var textFieldTitle = "520.1414" {
         didSet {
@@ -78,6 +90,46 @@ class CMView: UIView {
         }
     }
     
+    // 距左
+    var tfConstantLeft: CGFloat = 8 {
+        didSet {
+            self.setConstantForTF(left: self.tfConstantLeft,
+                                  centerY: tfConstantCenterY,
+                                  width: tfConstantWidth,
+                                  height: tfConstantHeight)
+        }
+        
+    }
+    
+    // 距中
+    var tfConstantCenterY: CGFloat = 0 {
+        didSet {
+            self.setConstantForTF(left: self.tfConstantLeft,
+                                  centerY: tfConstantCenterY,
+                                  width: tfConstantWidth,
+                                  height: tfConstantHeight)
+        }
+    }
+    
+    // 宽度
+    var tfConstantWidth: CGFloat = 200 {
+        didSet {
+            self.setConstantForTF(left: self.tfConstantLeft,
+                                  centerY: tfConstantCenterY,
+                                  width: tfConstantWidth,
+                                  height: tfConstantHeight)
+        }
+    }
+    
+    // 高度
+    var tfConstantHeight: CGFloat = 25 {
+        didSet {
+            self.setConstantForTF(left: self.tfConstantLeft,
+                                  centerY: tfConstantCenterY,
+                                  width: tfConstantWidth,
+                                  height: tfConstantHeight)
+        }
+    }
     
     // 等于 false时键盘点击无效
     var textFieldIsEnable = true {
@@ -93,6 +145,42 @@ class CMView: UIView {
         }
     }
     
+    var lineConstantLeft:CGFloat = 8 {
+        didSet {
+            self.setConstantForLine(left: lineConstantLeft,
+                                    top: lineConstantTop,
+                                    right: lineConstantRight,
+                                    height: lineConstantHeight)
+        }
+    }
+    
+    var lineConstantRight: CGFloat = -8 {
+        didSet {
+            self.setConstantForLine(left: lineConstantLeft,
+                                    top: lineConstantTop,
+                                    right: lineConstantRight,
+                                    height: lineConstantHeight)
+        }
+    }
+    
+    var lineConstantHeight: CGFloat = 1 {
+        didSet {
+            self.setConstantForLine(left: lineConstantLeft,
+                                    top: lineConstantTop,
+                                    right: lineConstantRight,
+                                    height: lineConstantHeight)
+        }
+    }
+    
+    var lineConstantTop: CGFloat = 8 {
+        didSet {
+            self.setConstantForLine(left: lineConstantLeft,
+                                    top: lineConstantTop,
+                                    right: lineConstantRight,
+                                    height: lineConstantHeight)
+        }
+    }
+    
     //button 的属性
     var backgroundImage = UIImage() {
         didSet {
@@ -100,19 +188,26 @@ class CMView: UIView {
         }
     }
     
-    var buttonTitle = "button" {
+    var buttonTitle = "" {
         didSet {
             self.button?.setTitle(buttonTitle, for: .normal)
         }
     }
     
-    var buttonSize = CGSize(width: 26, height: 26) {
+    var buttonConstantCenterY: CGFloat = 0 {
         didSet {
-            self.button?.frame.size = buttonSize
+            self.setConstantForButton(centerY: buttonConstantCenterY,
+                                      right: buttonConstantRight)
         }
     }
     
-    
+    var buttonConstantRight: CGFloat = 8 {
+        didSet {
+            self.setConstantForButton(centerY: buttonConstantCenterY,
+                                      right: buttonConstantRight)
+        }
+    }
+
     
     var label: CMLabel?
     var tf: CMTextField?
@@ -132,110 +227,124 @@ class CMView: UIView {
     
     func initialize() {
         
-        // 标签
-        self.label = CMLabel(frame: CGRect(x: 12, y: 8, width: 200, height: 20), title: self.labelText, color: labelColor, sizeTitle: labelSize)
-        self.addSubview(label!)
+        self.tf = CMTextField(frame: CGRect.zero, title: "520.1414", color: UIColor.red, sizeTitle: 14)
+        self.tf?.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.tf!)
         
-        // 键盘
-        self.tf = CMTextField(frame: CGRect(x: 12, y: 8+label!.frame.height, width: 200, height: 20), title: textFieldTitle, color: textFieldColor, sizeTitle: textFieldSize)
-        tf?.doWhatForBeginEditing = doWhatForBeginEditing
-        tf?.doWhatForShouldReturn = doWhatForShouldReturn
-        self.addSubview(tf!)
-        
-        // 底线
-        let frame = CGRect(x: 12, y: 8+8+label!.frame.height+tf!.frame.height, width: self.frame.size.width - 24, height: 1)
         self.viewLine = CMLineView(frame: frame, backgroundColor: lineColor)
-        self.addSubview(viewLine!)
+        self.viewLine!.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.viewLine!)
         
         
-        // 按钮
-        self.button = CMButton(title: self.buttonTitle, image: self.backgroundImage, block: { 
-            
-        })
+        self.button = CMButton(title: self.buttonTitle, image: self.backgroundImage, block: {})
         self.button?.doWhat = buttonDoWhat
-        self.button?.frame = CGRect(x: self.frame.width - 13 - 22, y: 8+label!.frame.height, width: buttonSize.width, height: buttonSize.height)
+        self.button!.setTitle(buttonTitle, for: .normal)
         self.addSubview(self.button!)
-
+        self.button!.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.label = CMLabel(frame: CGRect.zero, title: self.labelText, color: labelColor, sizeTitle: labelSize)
+        self.addSubview(self.label!)
+        self.label!.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 约束键盘
+        self.setConstantForTF(left: self.tfConstantLeft,
+                              centerY: self.tfConstantCenterY,
+                              width: self.tfConstantWidth,
+                              height: self.tfConstantHeight)
+        
+        self.setConstantForLabel(left: self.labelConstantLeft,
+                                 bottom: self.labelConstantBottom)
+        
+        self.setConstantForLine(left: lineConstantLeft,
+                                top: lineConstantTop,
+                                right: lineConstantRight,
+                                height: lineConstantHeight)
+        
+        self.setConstantForButton(centerY: self.buttonConstantCenterY,
+                                  right: self.buttonConstantRight)
+        
+        
+        
         let tap = UITapGestureRecognizer(target: self, action:  #selector(self.gesAction(sender:)))
         self.addGestureRecognizer(tap)
 
     }
     
-
     convenience init(frame: CGRect, labelTitle: String, labelColor: UIColor, labelSize: CGFloat,lineColor: UIColor,lineHeight: CGFloat,buttonDoWhat: @escaping ButtonDoWhat,doWhatForBeginEditing: @escaping DoWhatForBeginEditing) {
         self.init(frame: frame)
-        
-//        let label = CMLabel(frame: CGRect(x: 12, y: 8, width: 200, height: 20), title: labelTitle, color: labelColor, sizeTitle: labelSize)
-//        self.addSubview(label)
-//        
-//        let tf = CMTextField(frame: CGRect(x: 12, y: 8+8+label.frame.height, width: 200, height: 20), title: "520.1414", color: UIColor.red, sizeTitle: 16)
-//        self.addSubview(tf)
-//        
-//        tf.doWhatForBeginEditing = {
-//            doWhatForBeginEditing()
-//        }
-//        
-//        tf.doWhatForShouldReturn = {
-//            self.doWhatForShouldReturn?()
-//        }
-//        
-//        let frame = CGRect(x: 12, y: 8+8+8+label.frame.height+tf.frame.height, width: self.frame.size.width - 24, height: lineHeight)
-//        let viewLine = CMLineView(frame: frame, backgroundColor: lineColor)
-//        self.addSubview(viewLine)
-//        
-//        
-//        
-//        let button = CMButton(image: #imageLiteral(resourceName: "logo_black_sm")) {
-//            buttonDoWhat()
-//        }
-//        
-//        button.frame = CGRect(x: self.frame.width - 13 - 22, y: 8+8+label.frame.height, width: 26, height: 26)
-//        self.addSubview(button)
-//
-//        let tap = UITapGestureRecognizer(target: self, action:  #selector(self.gesAction(sender:)))
-//        self.addGestureRecognizer(tap)
-
+    
     }
     
     
     convenience init(textFieldEnable: Bool,frame: CGRect, labelTitle: String, labelColor: UIColor, labelSize: CGFloat,lineColor: UIColor,lineHeight: CGFloat,buttonDoWhat: @escaping ButtonDoWhat) {
         self.init(frame: frame)
         
-//        let label = CMLabel(frame: CGRect(x: 12, y: 8, width: 200, height: 20), title: labelTitle, color: labelColor, sizeTitle: labelSize)
-//        self.addSubview(label)
-//        
-//        let tf = CMTextField(frame: CGRect(x: 12, y: 8+8+label.frame.height, width: 200, height: 20), title: "520.1314", color: UIColor.red, sizeTitle: 16)
-//        self.addSubview(tf)
-//        
-//        tf.isEnabled = textFieldEnable
-//        
-////        tf.doWhatForBeginEditing = {
-////            doWhatForBeginEditing()
-////        }
-////        
-////        tf.doWhatForShouldReturn = {
-////            self.doWhatForShouldReturn?()
-////        }
-//        
-//        let frame = CGRect(x: 12, y: 8+8+8+label.frame.height+tf.frame.height, width: self.frame.size.width - 24, height: lineHeight)
-//        let viewLine = CMLineView(frame: frame, backgroundColor: lineColor)
-//        self.addSubview(viewLine)
-//        
-//        
-//        
-//        let button = CMButton(image: #imageLiteral(resourceName: "logo_black_sm")) {
-//            buttonDoWhat()
-//        }
-//        
-//        button.frame = CGRect(x: self.frame.width - 13 - 22, y: 8+8+label.frame.height, width: 26, height: 26)
-//        self.addSubview(button)
-        
-        
-        
-        
         
     }
 
+    /*
+     **  tf约束
+     */
+    func setConstantForTF(left: CGFloat,centerY: CGFloat,width: CGFloat,height: CGFloat) {
+
+        
+
+        let textFieldLeft = NSLayoutConstraint(item: self.tf!, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: left)
+        
+        let textFieldCenterY = NSLayoutConstraint(item: self.tf!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: centerY)
+        
+        let textFieldWidth = NSLayoutConstraint(item: self.tf!, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
+        
+        let textFieldHeight = NSLayoutConstraint(item: self.tf!, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)
+        
+        self.addConstraints([textFieldLeft,textFieldCenterY,textFieldWidth,textFieldHeight])
+
+    }
+    
+    /*
+     **  button约束
+     */
+    func setConstantForButton(centerY: CGFloat,right: CGFloat) {
+        
+        let buttonCenterY = NSLayoutConstraint(item: self.button!, attribute: .centerY, relatedBy: .equal, toItem: self.tf!, attribute: .centerY, multiplier: 1.0, constant: 0.0)
+        
+        let buttonRight = NSLayoutConstraint(item: self.button!, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1.0, constant: -8)
+        
+        self.addConstraints([buttonCenterY,buttonRight])
+    }
+    
+    
+    
+    /*
+     **  label约束
+     */
+    func setConstantForLabel(left: CGFloat,bottom: CGFloat) {
+        
+        // label 的约束
+        let labelLeft = NSLayoutConstraint(item: self.label!, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: left)
+        
+        let labelBottom = NSLayoutConstraint(item: self.label!, attribute: .bottom, relatedBy: .equal, toItem: self.tf, attribute: .top, multiplier: 1.0, constant: bottom)
+        
+        self.addConstraints([labelLeft,labelBottom])
+
+    }
+    
+    
+    /*
+     **  线的约束
+     */
+    func setConstantForLine(left: CGFloat, top: CGFloat,right: CGFloat,height: CGFloat) {
+        
+        let viewLineLeft = NSLayoutConstraint(item: viewLine!, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: left)
+        
+        let viewLineTop = NSLayoutConstraint(item: viewLine!, attribute: .top, relatedBy: .equal, toItem: self.tf, attribute: .bottom, multiplier: 1.0, constant: top)
+        
+        let viewLineRight = NSLayoutConstraint(item: viewLine!, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1.0, constant: right)
+        
+        let viewLineHeight = NSLayoutConstraint(item: self.viewLine!, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)
+        self.addConstraints([viewLineLeft,viewLineTop,viewLineRight,viewLineHeight])
+    }
+    
 
     // 触摸执行方法
     func gesAction(sender: UIGestureRecognizer) {
