@@ -62,15 +62,15 @@ class CMView: UIView {
         }
     }
     
-    @IBInspectable public var labelConstantLeft:CGFloat = 8 {
+    @IBInspectable public var labelLeft:CGFloat = 8 {
         didSet {
-            self.setConstantForLabel(left: labelConstantLeft, bottom: labelConstantBottom)
+            self.setConstantForLabel(left: labelLeft, bottom: labelBottom)
         }
     }
     
-    @IBInspectable public var labelConstantBottom:CGFloat = -8 {
+    @IBInspectable public var labelBottom:CGFloat = -8 {
         didSet {
-            self.setConstantForLabel(left: labelConstantLeft, bottom: labelConstantBottom)
+            self.setConstantForLabel(left: labelLeft, bottom: labelBottom)
         }
     }
     
@@ -94,43 +94,43 @@ class CMView: UIView {
     }
     
     // 距左
-    @IBInspectable public var tfConstantLeft: CGFloat = 8 {
+    @IBInspectable public var tfLeft: CGFloat = 8 {
         didSet {
-            self.setConstantForTF(left: self.tfConstantLeft,
-                                  centerY: tfConstantCenterY,
-                                  width: tfConstantWidth,
-                                  height: tfConstantHeight)
+            self.setConstantForTF(left: self.tfLeft,
+                                  centerY: tfCenterY,
+                                  width: tfWidth,
+                                  height: tfHeight)
         }
         
     }
     
     // 距中
-    @IBInspectable public var tfConstantCenterY: CGFloat = 0 {
+    @IBInspectable public var tfCenterY: CGFloat = 0 {
         didSet {
-            self.setConstantForTF(left: self.tfConstantLeft,
-                                  centerY: tfConstantCenterY,
-                                  width: tfConstantWidth,
-                                  height: tfConstantHeight)
+            self.setConstantForTF(left: self.tfLeft,
+                                  centerY: tfCenterY,
+                                  width: tfWidth,
+                                  height: tfHeight)
         }
     }
     
     // 宽度
-    @IBInspectable public var tfConstantWidth: CGFloat = 200 {
+    @IBInspectable public var tfWidth: CGFloat = 200 {
         didSet {
-            self.setConstantForTF(left: self.tfConstantLeft,
-                                  centerY: tfConstantCenterY,
-                                  width: tfConstantWidth,
-                                  height: tfConstantHeight)
+            self.setConstantForTF(left: self.tfLeft,
+                                  centerY: tfCenterY,
+                                  width: tfWidth,
+                                  height: tfHeight)
         }
     }
     
     // 高度
-    @IBInspectable public var tfConstantHeight: CGFloat = 25 {
+    @IBInspectable public var tfHeight: CGFloat = 25 {
         didSet {
-            self.setConstantForTF(left: self.tfConstantLeft,
-                                  centerY: tfConstantCenterY,
-                                  width: tfConstantWidth,
-                                  height: tfConstantHeight)
+            self.setConstantForTF(left: self.tfLeft,
+                                  centerY: tfCenterY,
+                                  width: tfWidth,
+                                  height: tfHeight)
         }
     }
     
@@ -148,39 +148,39 @@ class CMView: UIView {
         }
     }
     
-    @IBInspectable public  var lineConstantLeft:CGFloat = 8 {
+    @IBInspectable public  var lineLeft:CGFloat = 8 {
         didSet {
-            self.setConstantForLine(left: lineConstantLeft,
-                                    top: lineConstantTop,
-                                    right: lineConstantRight,
-                                    height: lineConstantHeight)
+            self.setConstantForLine(left: lineLeft,
+                                    top: lineTop,
+                                    right: lineRight,
+                                    height: lineHeight)
         }
     }
     
-    @IBInspectable public var lineConstantRight: CGFloat = -8 {
+    @IBInspectable public var lineRight: CGFloat = -8 {
         didSet {
-            self.setConstantForLine(left: lineConstantLeft,
-                                    top: lineConstantTop,
-                                    right: lineConstantRight,
-                                    height: lineConstantHeight)
+            self.setConstantForLine(left: lineLeft,
+                                    top: lineTop,
+                                    right: lineRight,
+                                    height: lineHeight)
         }
     }
     
-    @IBInspectable public var lineConstantHeight: CGFloat = 1 {
+    @IBInspectable public var lineHeight: CGFloat = 1 {
         didSet {
-            self.setConstantForLine(left: lineConstantLeft,
-                                    top: lineConstantTop,
-                                    right: lineConstantRight,
-                                    height: lineConstantHeight)
+            self.setConstantForLine(left: lineLeft,
+                                    top: lineTop,
+                                    right: lineRight,
+                                    height: lineHeight)
         }
     }
     
-    @IBInspectable public var lineConstantTop: CGFloat = 8 {
+    @IBInspectable public var lineTop: CGFloat = 8 {
         didSet {
-            self.setConstantForLine(left: lineConstantLeft,
-                                    top: lineConstantTop,
-                                    right: lineConstantRight,
-                                    height: lineConstantHeight)
+            self.setConstantForLine(left: lineLeft,
+                                    top: lineTop,
+                                    right: lineRight,
+                                    height: lineHeight)
         }
     }
     
@@ -250,18 +250,18 @@ class CMView: UIView {
         self.label!.translatesAutoresizingMaskIntoConstraints = false
         
         // 约束键盘
-        self.setConstantForTF(left: self.tfConstantLeft,
-                              centerY: self.tfConstantCenterY,
-                              width: self.tfConstantWidth,
-                              height: self.tfConstantHeight)
+        self.setConstantForTF(left: self.tfLeft,
+                              centerY: self.tfCenterY,
+                              width: self.tfWidth,
+                              height: self.tfHeight)
         
-        self.setConstantForLabel(left: self.labelConstantLeft,
-                                 bottom: self.labelConstantBottom)
+        self.setConstantForLabel(left: self.labelLeft,
+                                 bottom: self.labelBottom)
         
-        self.setConstantForLine(left: lineConstantLeft,
-                                top: lineConstantTop,
-                                right: lineConstantRight,
-                                height: lineConstantHeight)
+        self.setConstantForLine(left: lineLeft,
+                                top: lineTop,
+                                right: lineRight,
+                                height: lineHeight)
         
         self.setConstantForButton(centerY: self.buttonConstantCenterY,
                                   right: self.buttonConstantRight)

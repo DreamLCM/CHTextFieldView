@@ -37,7 +37,7 @@ class ViewController: UIViewController {
 //        self.viewXib.backgroundImage = #imageLiteral(resourceName: "logo_black_sm")
         self.viewXib.buttonTitle = "button"
         
-        self.viewXib.tfConstantHeight = self.viewXib.frame.height/5
+        self.viewXib.tfHeight = self.viewXib.frame.height/5
         
         // 按钮执行方法
         self.viewXib.buttonDoWhat = {
